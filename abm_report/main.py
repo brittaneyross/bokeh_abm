@@ -241,11 +241,11 @@ def calibration_tab():
 
 # Create each of the tabs
 tab1 = test_tab()
-#tab2 = calibration_tab()
+tab2 = calibration_tab()
 
 # Put all the tabs into one application
-#tabs = Tabs(tabs = [tab1,tab2], sizing_mode = "stretch_both")
-tabs = Tabs(tabs = [tab1])
+tabs = Tabs(tabs = [tab1,tab2], sizing_mode = "stretch_both")
+#tabs = Tabs(tabs = [tab1])
 
 # Put the tabs in the current document for display
 curdoc().add_root(tabs)
