@@ -6,8 +6,6 @@ from os.path import dirname, join
 # Bokeh basics
 from bokeh.io import curdoc
 from bokeh.models.widgets import Tabs
-from bokeh.layouts import layout
-from bokeh.models import Panel
 
 #bokeh modules
 from bokeh.plotting import figure,gmap
@@ -17,7 +15,7 @@ from bokeh.layouts import layout, column, row
 from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange,NumeralTickFormatter
 from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText, Toggle, TableColumn, DataTable
 
-def auto_ownership(data_dir):
+def auto_ownership():
 
     full_width = 2000
     column_width = 1000
@@ -25,19 +23,19 @@ def auto_ownership(data_dir):
     survey_color = '#9EA499'
     cmap_color = '#495667'
 
-    ao_counts = pd.read_csv(os.path.join(data_dir,'aoCounts.csv'),index_col=[0])
+    ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
 
-    survey_income = pd.read_csv(os.path.join(data_dir,'income_survey.csv'))
-    survey_size = pd.read_csv(os.path.join(data_dir,'size_survey.csv'))
-    survey_workers = pd.read_csv(os.path.join(data_dir,'workers_survey.csv'))
+    survey_income = pd.read_csv(join(dirname(__file__),'data','income_survey.csv'))
+    survey_size = pd.read_csv(join(dirname(__file__),'data','size_survey.csv'))
+    survey_workers = pd.read_csv(join(dirname(__file__),'data','workers_survey.csv'))
 
-    ctpp_income = pd.read_csv(os.path.join(data_dir,'income_ctpp.csv'))
-    ctpp_size = pd.read_csv(os.path.join(data_dir,'size_ctpp.csv'))
-    ctpp_workers = pd.read_csv(os.path.join(data_dir,'workers_ctpp.csv'))
+    ctpp_income = pd.read_csv(join(dirname(__file__),'data','income_ctpp.csv'))
+    ctpp_size = pd.read_csv(join(dirname(__file__),'data','size_ctpp.csv'))
+    ctpp_workers = pd.read_csv(join(dirname(__file__),'data','workers_ctpp.csv'))
 
-    model_income = pd.read_csv(os.path.join(data_dir,'income_model.csv'))
-    model_size = pd.read_csv(os.path.join(data_dir,'size_model.csv'))
-    model_workers = pd.read_csv(os.path.join(data_dir,'workers_model.csv'))
+    model_income = pd.read_csv(join(dirname(__file__),'data','income_model.csv'))
+    model_size = pd.read_csv(join(dirname(__file__),'data','size_model.csv'))
+    model_workers = pd.read_csv(join(dirname(__file__),'data','workers_model.csv'))
 
 
     #graphic functions
@@ -219,7 +217,7 @@ def auto_ownership(data_dir):
 #Tabs from scripts
 #from scripts.Auto import auto_ownership
 #where data should exit
-data_cwd = join(dirname(__file__),'data')
+#data_cwd = join(dirname(__file__),'data')
 
 def test_tab():
 
@@ -231,9 +229,9 @@ def test_tab():
 
     return tab_1
 
-def calibration_tab(data_dir):
+def calibration_tab():
 
-    ao = auto_ownership(data_dir)
+    ao = auto_ownership()
     #flow = Flow()
     #modechoice = ModeChoice(person_trips,survey_trips)
     #tpurp = TripPurpose(person_trips,survey_trips)
