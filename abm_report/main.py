@@ -1,7 +1,6 @@
 # Pandas for data management
 import pandas as pd
-import os
-import sys
+
 from os.path import dirname, join
 # Bokeh basics
 from bokeh.io import curdoc
