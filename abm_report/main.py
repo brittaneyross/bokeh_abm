@@ -227,21 +227,17 @@ def test_tab():
 
     return tab_1
 
-def calibration_tab():
-
-    ao = auto_ownership()
+ao = auto_ownership()
     #flow = Flow()
     #modechoice = ModeChoice(person_trips,survey_trips)
     #tpurp = TripPurpose(person_trips,survey_trips)
 
     #l_2 = layout(children=ao+flow+modechoice+tpurp)
-    l_2 = layout(children=[ao])
-
-    return Panel(child=l_2, title = '# Model Calibration')
+l_2 = layout(children=[ao])
+tab2 =  Panel(child=l_2, title = '# Model Calibration')
 
 # Create each of the tabs
 tab1 = test_tab()
-tab2 = calibration_tab()
 
 # Put all the tabs into one application
 tabs = Tabs(tabs = [tab1,tab2], sizing_mode = "stretch_both")
