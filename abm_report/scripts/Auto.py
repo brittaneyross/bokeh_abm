@@ -10,54 +10,36 @@ from bokeh.layouts import layout, column, row
 from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange,NumeralTickFormatter
 from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText, Toggle, TableColumn, DataTable
 
-def auto_ownership(data_dir):
+def auto_ownership():
 
     full_width = 2000
     column_width = 1000
+    bar_height = 500
     census_color = "#EFF1EF"
     survey_color = '#9EA499'
     cmap_color = '#495667'
-
-    ao_counts = pd.read_csv(os.path.join(data_dir,'aoCounts.csv'),index_col=[0])
-
-    survey_income = pd.read_csv(os.path.join(data_dir,'income_survey.csv'))
-    survey_size = pd.read_csv(os.path.join(data_dir,'size_survey.csv'))
-    survey_workers = pd.read_csv(os.path.join(data_dir,'workers_survey.csv'))
-
-    ctpp_income = pd.read_csv(os.path.join(data_dir,'income_ctpp.csv'))
-    ctpp_size = pd.read_csv(os.path.join(data_dir,'size_ctpp.csv'))
-    ctpp_workers = pd.read_csv(os.path.join(data_dir,'workers_ctpp.csv'))
-
-    model_income = pd.read_csv(os.path.join(data_dir,'income_model.csv'))
-    model_size = pd.read_csv(os.path.join(data_dir,'size_model.csv'))
-    model_workers = pd.read_csv(os.path.join(data_dir,'workers_model.csv'))
-
-
     #graphic functions
     TOOLS = "reset,hover,save"
 
     #make src data
-    def make_src(df):
+    def make_group_bar(df):
 
-        groupby = df.index.values.tolist()
+        groups = df.index.values.tolist()
         census = df['Census'].values.tolist()
         survey = df['Survey'].values.tolist()
         model = df['Model'].values.tolist()
 
-        data = {'Group': groupby,
+        data = {'Group': groups,
                'Census': census,
                'Survey': survey,
                'Model': model}
 
-        return ColumnDataSource(data=data), groupby, data
+        src = ColumnDataSource(data=data)
 
-    #make groupbed bar chart
-    #plot_height = full_width/4
-    def makeGroupBar(src, groups, data):
+        TOOLS = "hover"
 
         p = figure(x_range=FactorRange(*groups),title="Figure 1 - Auto Ownership Distribution",
-                   plot_width = column_width, plot_height = column_width/2,
-                   tools="hover",toolbar_location = None)
+                   plot_width = column_width, plot_height = bar_height, tools="hover")
 
         p.vbar(x=dodge('Group',-0.25,range=p.x_range),top='Census', width=0.25, source=src,
                color=census_color, legend=value("Census"))
@@ -75,13 +57,16 @@ def auto_ownership(data_dir):
         ]
 
         # Styling
-        p = style(p)
+        p = bar_style(p)
 
         p.legend.click_policy="hide"
 
         return p
 
-    def style(p):
+    #make groupbed bar chart
+    #plot_height = full_width/4
+
+    def bar_style(p):
 
         p.xgrid.visible = False
         p.ygrid.visible = False
@@ -117,9 +102,8 @@ def auto_ownership(data_dir):
                 width=column_width,sizing_mode='scale_both')
 
     #Auto Ownership Graph
-    ao_src = make_src(ao_counts)
-    ao_graph = makeGroupBar(ao_src[0], ao_src[1], ao_src[2])
-
+    ao_graph = make_group_bar(ao_counts)
+    #
     source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
                 2006 - 2010 CTPP 5-Year Data Set</a> | Survey: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
                 2007-08 Travel Tracker Survey</a>""",width = column_width, css_classes = ["caption", "text-center"])
@@ -185,7 +169,7 @@ def auto_ownership(data_dir):
               classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
               float_format='{:20,.1f}%'.format), css_classes = ["caption"])
 
-    ao = [  column(row(Spacer(),height = 50),
+    ao = [  column(row(Spacer(height = 50),height = 50),
             row(column(Spacer(), css_classes = ["col-lg-3", "text-center"]),
             column(left_col, css_classes = ["col-lg-3", "text-center"]),
             #
