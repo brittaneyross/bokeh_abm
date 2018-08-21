@@ -204,7 +204,7 @@ def mode_choice(trips_df, survey_df):
            row(purpose_selection,width=column_width),
            purp_title,purpBarChart,Spacer(height=25),
            row(type_selection,width=column_width),
-           type_title,typeBarChart,source,Div(text="<hr>",width=column_width)))
+           type_title,typeBarChart,source))
 
 
     return l_1

@@ -10,7 +10,7 @@ from bokeh.layouts import layout, column, row
 from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange,NumeralTickFormatter
 from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText, Toggle, TableColumn, DataTable
 
-def trip_purpose(trips,survey):
+def trip_purpose(trips_df,survey_df):
 
     column_width = 965
     column_width = 1000
@@ -53,11 +53,11 @@ def trip_purpose(trips,survey):
         if pertype_select == 'All' or pertype_select is None:
             t = trips['type'].drop_duplicates().values.tolist()
         else:
-            t= [pertype_select]
+            t = [pertype_select]
 
 
         select_trips =  trips.loc[(trips['type'].isin(t))]
-        survey_trips = survey.loc[(survey['type'].isin(t))]
+        survey_trips = survey_df.loc[(survey_df['type'].isin(t))]
 
         mtrips = select_trips.groupby('trip_purpose').agg({'Model':sum})
         strips = survey_trips.groupby('trip_purpose').agg({'Weight2':sum})
@@ -72,9 +72,6 @@ def trip_purpose(trips,survey):
 
     #make src data
     def make_src(df):
-
-        df.sort_values(by='Survey',ascending=False, inplace=True)
-
         groupby = df.index.values.tolist()
         survey = df['Survey'].values.tolist()
         model = df['Model'].values.tolist()
@@ -88,7 +85,7 @@ def trip_purpose(trips,survey):
     #make groupbed bar chart
     def makeGroupBar(src):
 
-        groups = trips.trip_mode.drop_duplicates().values.tolist()
+        groups = trips_df.trip_purpose.drop_duplicates().values.tolist()
 
         p = figure(x_range=FactorRange(*groups),
                    plot_width = column_width, plot_height = bar_height,
@@ -101,8 +98,8 @@ def trip_purpose(trips,survey):
                color=cmap_color, legend=value("Model"))
 
         p.select_one(HoverTool).tooltips = [
-             ('Observed - Trips',"@Observed{0,}"),
-             ('Model - Trips',"@Model{0,}")
+             ('Observed - Trip',"@Observed{0,}"),
+             ('Model - Trip',"@Model{0,}")
         ]
 
         # Styling
@@ -125,12 +122,12 @@ def trip_purpose(trips,survey):
 
         type_select = type_selection.value
 
-        perTypeTrips = filter_trips(trips, type_select)
+        perTypeTrips = filter_trips(trips_df, type_select)
 
         new_src_type = make_src(perTypeTrips)
         src_type.data.update(new_src_type.data)
 
-        type_title.text = "<h5>Figure # - %s Trips by Mode (Select person type from dropdown)</h5>" % (type_select)
+        type_title.text = "<h5>Figure # - %s Trips by Purpose (Select person type from dropdown)</h5>" % (type_select)
 
     #Dropdown#---------------------------------------------------------------------------------------------------
     type_menu = [('All','All'),
@@ -150,19 +147,16 @@ def trip_purpose(trips,survey):
     type_selection.on_change('value', update)
 
     #create initial bar chart
-    perTypeTrips = filter_trips(trips,'All')
-
-    #if purpose_selection.value == None:
-    #    purpose_selection.value = 'All'
+    perTypeTrips = filter_trips(trips_df,'All')
 
     type_title = Div(text= "<h5>Figure # - %s Trips by Purpose (Select person type from dropdown)</h5>" % ('All'),
-                   width = column_width)
+                   width = column_width,  css_classes = ["caption"])
 
     src_type = make_src(perTypeTrips)
     typeBarChart = makeGroupBar(src_type)
 
     #Trip Purpose
-    ptrips = tripsXpurpose(trips,survey)
+    ptrips = tripsXpurpose(trips_df,survey_df)
     trip_purpose = ptrips[0]
     share = ptrips[1]
 
@@ -197,7 +191,7 @@ def trip_purpose(trips,survey):
 
     l_1 = row(column(h_1,Spacer(height=25),
            row(purp_html,Spacer(width=50),purpshare_html,width=column_width),
-           row(type_selection),
+           Spacer(height=25), row(type_selection),row(type_title, css_classes = ["caption"]),row(typeBarChart),
            row(source,Div(text="<hr>",width=column_width),width = column_width, css_classes = ["caption", "text-center"])))
 
     return l_1
