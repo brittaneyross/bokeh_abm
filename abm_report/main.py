@@ -31,6 +31,7 @@ def auto_ownership():
 
     full_width = 2000
     column_width = 1000
+    bar_height = 500
     census_color = "#EFF1EF"
     survey_color = '#9EA499'
     cmap_color = '#495667'
@@ -55,28 +56,27 @@ def auto_ownership():
         TOOLS = "hover"
 
         p = figure(x_range=FactorRange(*groups),title="Figure 1 - Auto Ownership Distribution",
-                   plot_width = column_width, plot_height = column_width/2,
-                   tools=TOOLS,toolbar_location = "below")
+                   plot_width = column_width, plot_height = bar_height, tools="hover")
 
         p.vbar(x=dodge('Group',-0.25,range=p.x_range),top='Census', width=0.25, source=src,
                color=census_color, legend=value("Census"))
 
-        # p.vbar(x=dodge('Group',0,range=p.x_range),top='Survey', width=0.25, source=src,
-        #        color=survey_color, legend=value("Survey"))
-        #
-        # p.vbar(x=dodge('Group',0.25,range=p.x_range),top='Model', width=0.25, source=src,
-        #        color=cmap_color, legend=value("Model"))
+        p.vbar(x=dodge('Group',0,range=p.x_range),top='Survey', width=0.25, source=src,
+               color=survey_color, legend=value("Survey"))
 
-        # p.select_one(HoverTool).tooltips = [
-        #      ('Census - Household Total',"@Census{0,}"),
-        #      ('Survey - Household Total',"@Survey{0,}"),
-        #      ('Model - Household Total',"@Model{0,}")
-        # ]
+        p.vbar(x=dodge('Group',0.25,range=p.x_range),top='Model', width=0.25, source=src,
+               color=cmap_color, legend=value("Model"))
+
+        p.select_one(HoverTool).tooltips = [
+             ('Census - Household Total',"@Census{0,}"),
+             ('Survey - Household Total',"@Survey{0,}"),
+             ('Model - Household Total',"@Model{0,}")
+        ]
 
         # Styling
         p = bar_style(p)
 
-        #p.legend.click_policy="hide"
+        p.legend.click_policy="hide"
 
         return p
 
@@ -119,14 +119,13 @@ def auto_ownership():
                 width=column_width,sizing_mode='scale_both')
 
     #Auto Ownership Graph
-    ao_src = make_src(ao_counts)
-    ao_graph = make_group_bar(ao_src[0], ao_src[1])
+    ao_graph = make_group_bar(ao_counts)
     #
-    # source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
-    #             2006 - 2010 CTPP 5-Year Data Set</a> | Survey: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
-    #             2007-08 Travel Tracker Survey</a>""",width = column_width, css_classes = ["caption", "text-center"])
-    #
-    # h_2_1 = row(column(ao_graph,source, width = column_width))
+    source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
+                2006 - 2010 CTPP 5-Year Data Set</a> | Survey: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
+                2007-08 Travel Tracker Survey</a>""",width = column_width, css_classes = ["caption", "text-center"])
+
+    h_2_1 = row(column(ao_graph,source, width = column_width))
 
     #---------------------------------------------------------------------------------------------------------------
     #Auto Ownership by Household Characteristic Tables
@@ -211,7 +210,7 @@ def auto_ownership():
             column(left_col, css_classes = ["col-lg-3", "text-center"]),
             #
             # Center column with report content
-               row(column(h_2)))]
+               row(column(h_2,h_2_1,h_2_2,tbl_income)))]
 
     return ao
 
