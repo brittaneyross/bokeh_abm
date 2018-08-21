@@ -4,15 +4,13 @@ import pandas as pd
 from os.path import dirname, join
 # Bokeh basics
 from bokeh.io import curdoc
-from bokeh.models.widgets import Tabs
-
 #bokeh modules
-from bokeh.plotting import figure,gmap
+from bokeh.plotting import figure
 from bokeh.core.properties import value
 from bokeh.transform import factor_cmap, dodge
 from bokeh.layouts import layout, column, row
 from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange,NumeralTickFormatter
-from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText, Toggle, TableColumn, DataTable
+from bokeh.models.widgets import Div, Tabs
 
 
 ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
@@ -40,38 +38,34 @@ def auto_ownership():
     TOOLS = "reset,hover,save"
 
     #make src data
-    def make_src(df):
+    def make_group_bar(df):
 
-        groupby = df.index.values.tolist()
+        groups = df.index.values.tolist()
         census = df['Census'].values.tolist()
         survey = df['Survey'].values.tolist()
         model = df['Model'].values.tolist()
 
-        data = {'Group': groupby,
+        data = {'Group': groups,
                'Census': census,
                'Survey': survey,
                'Model': model}
 
-        return ColumnDataSource(data=data), groupby
-
-    #make groupbed bar chart
-    #plot_height = full_width/4
-    def make_group_bar(src, groups):
+        src = ColumnDataSource(data=data)
 
         TOOLS = "hover"
 
         p = figure(x_range=FactorRange(*groups),title="Figure 1 - Auto Ownership Distribution",
                    plot_width = column_width, plot_height = column_width/2,
-                   tools=TOOLS,toolbar_location = None)
+                   tools=TOOLS,toolbar_location = "below")
 
         p.vbar(x=dodge('Group',-0.25,range=p.x_range),top='Census', width=0.25, source=src,
                color=census_color, legend=value("Census"))
 
-        p.vbar(x=dodge('Group',0,range=p.x_range),top='Survey', width=0.25, source=src,
-               color=survey_color, legend=value("Survey"))
-
-        p.vbar(x=dodge('Group',0.25,range=p.x_range),top='Model', width=0.25, source=src,
-               color=cmap_color, legend=value("Model"))
+        # p.vbar(x=dodge('Group',0,range=p.x_range),top='Survey', width=0.25, source=src,
+        #        color=survey_color, legend=value("Survey"))
+        #
+        # p.vbar(x=dodge('Group',0.25,range=p.x_range),top='Model', width=0.25, source=src,
+        #        color=cmap_color, legend=value("Model"))
 
         # p.select_one(HoverTool).tooltips = [
         #      ('Census - Household Total',"@Census{0,}"),
@@ -80,13 +74,16 @@ def auto_ownership():
         # ]
 
         # Styling
-        p = map_style(p)
+        p = bar_style(p)
 
         #p.legend.click_policy="hide"
 
         return p
 
-    def map_style(p):
+    #make groupbed bar chart
+    #plot_height = full_width/4
+
+    def bar_style(p):
 
         p.xgrid.visible = False
         p.ygrid.visible = False
