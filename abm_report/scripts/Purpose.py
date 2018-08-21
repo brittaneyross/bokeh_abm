@@ -90,7 +90,7 @@ def trip_purpose(trips,survey):
         groups = trips.trip_mode.drop_duplicates().values.tolist()
 
         p = figure(x_range=FactorRange(*groups),
-                   plot_width = column_width, plot_height = column_width/4,
+                   plot_width = column_width, plot_height = bar_height,
                    tools="hover",toolbar_location = None)
 
         p.vbar(x=dodge('Group',-0.25,range=p.x_range),top='Observed', width=0.25, source=src,
