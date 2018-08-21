@@ -14,6 +14,7 @@ def trip_purpose(trips,survey):
 
     column_width = 965
     column_width = 1000
+    bar_height = 500
     census_color = "#EFF1EF"
     survey_color = '#9EA499'
     cmap_color = '#495667'
