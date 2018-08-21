@@ -121,7 +121,7 @@ def auto_ownership():
 
     #Auto Ownership Graph
     ao_src = make_src(ao_counts)
-    # ao_graph = makeGroupBar(ao_src[0], ao_src[1], ao_src[2])
+    ao_graph = makeGroupBar(ao_src[0], ao_src[1], ao_src[2])
     #
     # source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
     #             2006 - 2010 CTPP 5-Year Data Set</a> | Survey: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
