@@ -131,7 +131,7 @@ def auto_ownership():
 
     #---------------------------------------------------------------------------------------------------------------
     #Auto Ownership by Household Characteristic Tables
-    #h_2_2 = Div(text = """<h2># | Auto Ownership By Household Characteristics</h2>
+    h_2_2 = Div(text = """<h2># | Auto Ownership By Household Characteristics</h2>
                 <p>ontrary to popular belief, Lorem Ipsum is not simply random text. It
                 has roots in a piece of classical Latin literature from 45 BC, making it
                 over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
@@ -145,7 +145,7 @@ def auto_ownership():
 
     #Tables
     #ADD FORMATS
-    #tbl_income = Div(text="<h4><center>Auto Ownership By Household Income</center></h4>",width=column_width,css_classes = ["text-center"])
+    tbl_income = Div(text="<h4><center>Auto Ownership By Household Income</center></h4>",width=column_width,css_classes = ["text-center"])
 
     # s1_html = Div(text="<h5>Table 1 - Survey Income</h5>"+survey_income.to_html(index=False,
     #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
