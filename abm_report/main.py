@@ -120,7 +120,7 @@ def auto_ownership():
                 width=column_width,sizing_mode='scale_both')
 
     #Auto Ownership Graph
-    # ao_src = make_src(ao_counts)
+    ao_src = make_src(ao_counts)
     # ao_graph = makeGroupBar(ao_src[0], ao_src[1], ao_src[2])
     #
     # source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
