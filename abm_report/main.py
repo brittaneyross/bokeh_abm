@@ -147,65 +147,72 @@ def auto_ownership():
     #ADD FORMATS
     tbl_income = Div(text="<h4><center>Auto Ownership By Household Income</center></h4>",width=column_width,css_classes = ["text-center"])
 
-    s1_html = Div(text="<h5>Table 1 - Survey Income</h5>"+survey_income.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    # s1_html = Div(text="<h5>Table 1 - Survey Income</h5>"+survey_income.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    #
+    # c1_html = Div(text="<h5>Table 2 - CTPP Income</h5>"+ctpp_income.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    #
+    # m1_html = Div(text="<h5>Table 3 - Model Income</h5>"+model_income.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    #
+    #
+    # tbl_size = Div(text="<h4><center>Auto Ownership By Household Size</center></h4>",width=column_width)
+    #
+    # s2_html = Div(text="<h5>Table 4 - Survey Household Size</h5>"+survey_size.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    #
+    # c2_html = Div(text="<h5>Table 5 - CTPP Household Size</h5>"+ctpp_size.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    #
+    # m2_html = Div(text="<h5>Table 6 - Model Household Size</h5>"+model_size.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    #
+    # tbl_workers = Div(text="<h4><center>Auto Ownership By Workers In Household</center></h4>",width=column_width)
+    #
+    # s3_html = Div(text="<h5>Table 7 - Survey Workers</h5>"+survey_workers.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    #
+    # c3_html = Div(text="<h5>Table 8 - CTPP Workers</h5>"+ctpp_workers.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    #
+    # m3_html = Div(text="<h5>Table 9 - Model Workers</h5>"+model_workers.to_html(index=False,
+    #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
+    #           float_format='{:20,.1f}%'.format), css_classes = ["caption"])
 
-    c1_html = Div(text="<h5>Table 2 - CTPP Income</h5>"+ctpp_income.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
+    # ao = [  column(row(Spacer(),height = 50),
+    #         row(column(Spacer(), css_classes = ["col-lg-3", "text-center"]),
+    #         column(left_col, css_classes = ["col-lg-3", "text-center"]),
+    #         #
+    #         # Center column with report content
+    #            row(column(h_2,h_2_1,h_2_2,tbl_income,
+    #                       row(s1_html,Spacer(width=50),c1_html,Spacer(width=50),m1_html),
+    #                       tbl_size,
+    #                       row(s2_html,Spacer(width=50),c2_html,Spacer(width=50),m2_html),
+    #                       tbl_workers,
+    #                       row(s3_html,Spacer(width=50),c3_html,Spacer(width=50),m3_html),
+    #                       css_classes = ["col-lg-12"], width = column_width)),
+    #         #
+    #         #Right Side Panel
+    #            column(right_col, css_classes = ["col-lg-3","text-center"]),
+    #
+    #         #Page Attributes
+    #            css_classes = ["container-fluid"], width = 1800))]
 
-    m1_html = Div(text="<h5>Table 3 - Model Income</h5>"+model_income.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
-
-
-    tbl_size = Div(text="<h4><center>Auto Ownership By Household Size</center></h4>",width=column_width)
-
-    s2_html = Div(text="<h5>Table 4 - Survey Household Size</h5>"+survey_size.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
-
-    c2_html = Div(text="<h5>Table 5 - CTPP Household Size</h5>"+ctpp_size.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
-
-    m2_html = Div(text="<h5>Table 6 - Model Household Size</h5>"+model_size.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
-
-    tbl_workers = Div(text="<h4><center>Auto Ownership By Workers In Household</center></h4>",width=column_width)
-
-    s3_html = Div(text="<h5>Table 7 - Survey Workers</h5>"+survey_workers.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
-
-    c3_html = Div(text="<h5>Table 8 - CTPP Workers</h5>"+ctpp_workers.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
-
-    m3_html = Div(text="<h5>Table 9 - Model Workers</h5>"+model_workers.to_html(index=False,
-              classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
-              float_format='{:20,.1f}%'.format), css_classes = ["caption"])
-
-    ao = [  column(row(Spacer(),height = 50),
+    ao = [row(Spacer(),height = 50),
             row(column(Spacer(), css_classes = ["col-lg-3", "text-center"]),
             column(left_col, css_classes = ["col-lg-3", "text-center"]),
             #
             # Center column with report content
-               row(column(h_2,h_2_1,h_2_2,tbl_income,
-                          row(s1_html,Spacer(width=50),c1_html,Spacer(width=50),m1_html),
-                          tbl_size,
-                          row(s2_html,Spacer(width=50),c2_html,Spacer(width=50),m2_html),
-                          tbl_workers,
-                          row(s3_html,Spacer(width=50),c3_html,Spacer(width=50),m3_html),
-                          css_classes = ["col-lg-12"], width = column_width)),
-            #
-            #Right Side Panel
-               column(right_col, css_classes = ["col-lg-3","text-center"]),
-
-            #Page Attributes
-               css_classes = ["container-fluid"], width = 1800))]
+               row(column(h_2,h_2_1,h_2_2,tbl_income)))]
 
     return ao
 
