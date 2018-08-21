@@ -120,14 +120,14 @@ def auto_ownership():
                 width=column_width,sizing_mode='scale_both')
 
     #Auto Ownership Graph
-    ao_src = make_src(ao_counts)
-    ao_graph = makeGroupBar(ao_src[0], ao_src[1], ao_src[2])
-
-    source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
-                2006 - 2010 CTPP 5-Year Data Set</a> | Survey: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
-                2007-08 Travel Tracker Survey</a>""",width = column_width, css_classes = ["caption", "text-center"])
-
-    h_2_1 = row(column(ao_graph,source, width = column_width))
+    # ao_src = make_src(ao_counts)
+    # ao_graph = makeGroupBar(ao_src[0], ao_src[1], ao_src[2])
+    #
+    # source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
+    #             2006 - 2010 CTPP 5-Year Data Set</a> | Survey: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
+    #             2007-08 Travel Tracker Survey</a>""",width = column_width, css_classes = ["caption", "text-center"])
+    #
+    # h_2_1 = row(column(ao_graph,source, width = column_width))
 
     #---------------------------------------------------------------------------------------------------------------
     #Auto Ownership by Household Characteristic Tables
@@ -212,7 +212,7 @@ def auto_ownership():
             column(left_col, css_classes = ["col-lg-3", "text-center"]),
             #
             # Center column with report content
-               row(column(h_2,h_2_1,h_2_2,tbl_income)))]
+               row(column(h_2)))]
 
     return ao
 
