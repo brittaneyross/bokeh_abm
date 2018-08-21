@@ -176,11 +176,11 @@ def auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
             column(left_col, css_classes = ["col-lg-3", "text-center"]),
             #
             # Center column with report content
-               row(column(h_2,h_2_1,h_2_2,tbl_income,
+               row(column(h_2,h_2_1,Spacer(height = 25),h_2_2,Spacer(height = 25),tbl_income,
                           row(s1_html,Spacer(width=50),c1_html,Spacer(width=50),m1_html),
-                          tbl_size,
+                          Spacer(height = 25),tbl_size,
                           row(s2_html,Spacer(width=50),c2_html,Spacer(width=50),m2_html),
-                          tbl_workers,
+                          Spacer(height = 25),tbl_workers,
                           row(s3_html,Spacer(width=50),c3_html,Spacer(width=50),m3_html),
                           css_classes = ["col-lg-12"], width = column_width)),
             #
