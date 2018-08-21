@@ -85,7 +85,7 @@ def auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
     left_col = Div(text="""<h4>place holder</h4>""")
     right_col = Div(text="""<h4>figures</h4>""")
 
-    h_2 = Div(text="""<h2># Auto Ownership</h2>
+    h_2 = Div(text="""<h2># Auto Ownership</h2><hr>
                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
                 It has roots in a piece of classical Latin literature from 45 BC,
                 making it over 2000 years old. Richard McClintock, a Latin professor
@@ -114,7 +114,7 @@ def auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
 
     #---------------------------------------------------------------------------------------------------------------
     #Auto Ownership by Household Characteristic Tables
-    h_2_2 = Div(text = """<h2># | Auto Ownership By Household Characteristics</h2>
+    h_2_2 = Div(text = """<h2># | Auto Ownership By Household Characteristics</h2><hr>
                 <p>ontrary to popular belief, Lorem Ipsum is not simply random text. It
                 has roots in a piece of classical Latin literature from 45 BC, making it
                 over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
@@ -128,7 +128,7 @@ def auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
 
     #Tables
     #ADD FORMATS
-    tbl_income = Div(text="<h4><center>Auto Ownership By Household Income</center></h4>",width=column_width,css_classes = ["text-center"])
+    tbl_income = Div(text="<h4><center>Auto Ownership By Household Income</center></h4><hr>",width=column_width,css_classes = ["text-center"])
 
     s1_html = Div(text="<h5>Table 1 - Survey Income</h5>"+survey_income.to_html(index=False,
               classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
@@ -143,7 +143,7 @@ def auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
               float_format='{:20,.1f}%'.format), css_classes = ["caption"])
 
 
-    tbl_size = Div(text="<h4><center>Auto Ownership By Household Size</center></h4>",width=column_width)
+    tbl_size = Div(text="<h4><center>Auto Ownership By Household Size</center></h4><hr>",width=column_width)
 
     s2_html = Div(text="<h5>Table 4 - Survey Household Size</h5>"+survey_size.to_html(index=False,
               classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
@@ -157,7 +157,7 @@ def auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
               classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
               float_format='{:20,.1f}%'.format), css_classes = ["caption"])
 
-    tbl_workers = Div(text="<h4><center>Auto Ownership By Workers In Household</center></h4>",width=column_width)
+    tbl_workers = Div(text="<h4><center>Auto Ownership By Workers In Household</center></h4><hr>",width=column_width)
 
     s3_html = Div(text="<h5>Table 7 - Survey Workers</h5>"+survey_workers.to_html(index=False,
               classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
