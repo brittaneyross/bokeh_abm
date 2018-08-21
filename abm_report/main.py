@@ -16,18 +16,18 @@ from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText
 
 
 ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
-#
-# survey_income = pd.read_csv(join(dirname(__file__),'data','income_survey.csv'))
-# survey_size = pd.read_csv(join(dirname(__file__),'data','size_survey.csv'))
-# survey_workers = pd.read_csv(join(dirname(__file__),'data','workers_survey.csv'))
-#
-# ctpp_income = pd.read_csv(join(dirname(__file__),'data','income_ctpp.csv'))
-# ctpp_size = pd.read_csv(join(dirname(__file__),'data','size_ctpp.csv'))
-# ctpp_workers = pd.read_csv(join(dirname(__file__),'data','workers_ctpp.csv'))
-#
-# model_income = pd.read_csv(join(dirname(__file__),'data','income_model.csv'))
-# model_size = pd.read_csv(join(dirname(__file__),'data','size_model.csv'))
-# model_workers = pd.read_csv(join(dirname(__file__),'data','workers_model.csv'))
+
+survey_income = pd.read_csv(join(dirname(__file__),'data','income_survey.csv'))
+survey_size = pd.read_csv(join(dirname(__file__),'data','size_survey.csv'))
+survey_workers = pd.read_csv(join(dirname(__file__),'data','workers_survey.csv'))
+
+ctpp_income = pd.read_csv(join(dirname(__file__),'data','income_ctpp.csv'))
+ctpp_size = pd.read_csv(join(dirname(__file__),'data','size_ctpp.csv'))
+ctpp_workers = pd.read_csv(join(dirname(__file__),'data','workers_ctpp.csv'))
+
+model_income = pd.read_csv(join(dirname(__file__),'data','income_model.csv'))
+model_size = pd.read_csv(join(dirname(__file__),'data','size_model.csv'))
+model_workers = pd.read_csv(join(dirname(__file__),'data','workers_model.csv'))
 
 def auto_ownership():
 
