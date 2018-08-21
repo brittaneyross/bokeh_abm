@@ -14,6 +14,7 @@ from bokeh.models.widgets import Div, Tabs
 
 from scripts.Auto import auto_ownership
 from scripts.Mode import mode_choice
+from scripts.Purpose import trip_purpose
 
 ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
 
@@ -41,6 +42,8 @@ ao = auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
 
 mc = mode_choice(model_trips,survey_trips)
 
+tp = trip_purpose(model_trips,survey_trips)
+
 def test_tab():
 
     h_1 = Div(text = """<h1><center>Intro Text</center></h1>""")
@@ -62,9 +65,10 @@ right_col = Div(text="""<h4>figures</h4>""")
 
 l_2 = layout(children=[row(Spacer(height = 50)),
                         row(column(left_col, width= 400,css_classes = ["caption", "text-center"]),
-                        column(ao,row(Spacer(height = 50)),mc),
+                        column(ao,row(Spacer(height = 50)), mc, row(Spacer(height = 50)), tp),
                         column(right_col, width= 400, css_classes = ["caption", "text-center"]),
-                        css_classes = ["container-fluid"], width = 1800)])
+                        css_classes = ["container-fluid"], width = 2000)])
+
 tab2 =  Panel(child=l_2, title = '# Model Calibration')
 
 # Create each of the tabs
