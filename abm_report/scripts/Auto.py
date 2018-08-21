@@ -10,7 +10,9 @@ from bokeh.layouts import layout, column, row
 from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange,NumeralTickFormatter
 from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText, Toggle, TableColumn, DataTable
 
-def auto_ownership():
+def auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
+                    ctpp_income,ctpp_size,ctpp_workers,
+                    model_income,model_size,model_workers):
 
     full_width = 2000
     column_width = 1000

@@ -21,7 +21,7 @@ survey_size = pd.read_csv(join(dirname(__file__),'data','size_survey.csv'))
 survey_workers = pd.read_csv(join(dirname(__file__),'data','workers_survey.csv'))
 
 ctpp_income = pd.read_csv(join(dirname(__file__),'data','income_ctpp.csv'))
-ctpp_size = pd.read_csv(join(dirname(__file__),'data','size_ctpp.csv'))
+ctpp_size, = pd.read_csv(join(dirname(__file__),'data','size_ctpp.csv'))
 ctpp_workers = pd.read_csv(join(dirname(__file__),'data','workers_ctpp.csv'))
 
 model_income = pd.read_csv(join(dirname(__file__),'data','income_model.csv'))
@@ -226,7 +226,9 @@ def test_tab():
 
     return tab_1
 
-ao = auto_ownership()
+ao = auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
+                    ctpp_income,ctpp_size,ctpp_workers,
+                    model_income,model_size,model_workers)
     #flow = Flow()
     #modechoice = ModeChoice(person_trips,survey_trips)
     #tpurp = TripPurpose(person_trips,survey_trips)
