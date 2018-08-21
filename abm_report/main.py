@@ -205,7 +205,7 @@ def auto_ownership():
     #         #Page Attributes
     #            css_classes = ["container-fluid"], width = 1800))]
 
-    ao = [row(Spacer(),height = 50),
+    ao = [row(Spacer(height = 100),height = 100),
             row(column(Spacer(), css_classes = ["col-lg-3", "text-center"]),
             column(left_col, css_classes = ["col-lg-3", "text-center"]),
             #
