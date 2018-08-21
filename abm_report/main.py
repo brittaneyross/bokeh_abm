@@ -15,19 +15,19 @@ from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange
 from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText, Toggle, TableColumn, DataTable
 
 
-ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
-
-survey_income = pd.read_csv(join(dirname(__file__),'data','income_survey.csv'))
-survey_size = pd.read_csv(join(dirname(__file__),'data','size_survey.csv'))
-survey_workers = pd.read_csv(join(dirname(__file__),'data','workers_survey.csv'))
-
-ctpp_income = pd.read_csv(join(dirname(__file__),'data','income_ctpp.csv'))
-ctpp_size = pd.read_csv(join(dirname(__file__),'data','size_ctpp.csv'))
-ctpp_workers = pd.read_csv(join(dirname(__file__),'data','workers_ctpp.csv'))
-
-model_income = pd.read_csv(join(dirname(__file__),'data','income_model.csv'))
-model_size = pd.read_csv(join(dirname(__file__),'data','size_model.csv'))
-model_workers = pd.read_csv(join(dirname(__file__),'data','workers_model.csv'))
+# ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
+#
+# survey_income = pd.read_csv(join(dirname(__file__),'data','income_survey.csv'))
+# survey_size = pd.read_csv(join(dirname(__file__),'data','size_survey.csv'))
+# survey_workers = pd.read_csv(join(dirname(__file__),'data','workers_survey.csv'))
+#
+# ctpp_income = pd.read_csv(join(dirname(__file__),'data','income_ctpp.csv'))
+# ctpp_size = pd.read_csv(join(dirname(__file__),'data','size_ctpp.csv'))
+# ctpp_workers = pd.read_csv(join(dirname(__file__),'data','workers_ctpp.csv'))
+#
+# model_income = pd.read_csv(join(dirname(__file__),'data','income_model.csv'))
+# model_size = pd.read_csv(join(dirname(__file__),'data','size_model.csv'))
+# model_workers = pd.read_csv(join(dirname(__file__),'data','workers_model.csv'))
 
 def auto_ownership():
 
@@ -131,7 +131,7 @@ def auto_ownership():
 
     #---------------------------------------------------------------------------------------------------------------
     #Auto Ownership by Household Characteristic Tables
-    h_2_2 = Div(text = """<h2># | Auto Ownership By Household Characteristics</h2>
+    #h_2_2 = Div(text = """<h2># | Auto Ownership By Household Characteristics</h2>
                 <p>ontrary to popular belief, Lorem Ipsum is not simply random text. It
                 has roots in a piece of classical Latin literature from 45 BC, making it
                 over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
@@ -145,7 +145,7 @@ def auto_ownership():
 
     #Tables
     #ADD FORMATS
-    tbl_income = Div(text="<h4><center>Auto Ownership By Household Income</center></h4>",width=column_width,css_classes = ["text-center"])
+    #tbl_income = Div(text="<h4><center>Auto Ownership By Household Income</center></h4>",width=column_width,css_classes = ["text-center"])
 
     # s1_html = Div(text="<h5>Table 1 - Survey Income</h5>"+survey_income.to_html(index=False,
     #           classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
