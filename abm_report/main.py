@@ -13,6 +13,7 @@ from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange
 from bokeh.models.widgets import Div, Tabs
 
 from scripts.Auto import auto_ownership
+from scripts.Mode import mode_choice
 
 ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
 
@@ -28,13 +29,17 @@ model_income = pd.read_csv(join(dirname(__file__),'data','income_model.csv'))
 model_size = pd.read_csv(join(dirname(__file__),'data','size_model.csv'))
 model_workers = pd.read_csv(join(dirname(__file__),'data','workers_model.csv'))
 
+model_trips = pd.read_csv(join(dirname(__file__),'data','person_trips.csv'))
+survey_trips = pd.read_csv(join(dirname(__file__),'data','TravelSurvey_weekday_rsg.csv'))
+
 
 #get tab contents
 #auto ownership content
 ao = auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
                     ctpp_income,ctpp_size,ctpp_workers,
                     model_income,model_size,model_workers)
-    #flow = Flow()
+
+mc = mode_choice(model_trips,survey_trips)
 
 def test_tab():
 
@@ -51,7 +56,15 @@ def test_tab():
     #tpurp = TripPurpose(person_trips,survey_trips)
 
     #l_2 = layout(children=ao+flow+modechoice+tpurp)
-l_2 = layout(children=[ao])
+
+left_col = Div(text="""<h4>place holder</h4>""")
+right_col = Div(text="""<h4>figures</h4>""")
+
+l_2 = layout(children=[row(Spacer(height = 50)),
+                        row(column(left_col, width= 400,css_classes = ["caption", "text-center"]),
+                        column(ao,row(Spacer(height = 50)),mc),
+                        column(right_col, width= 400, css_classes = ["caption", "text-center"]),
+                        css_classes = ["container-fluid"], width = 1800)])
 tab2 =  Panel(child=l_2, title = '# Model Calibration')
 
 # Create each of the tabs
