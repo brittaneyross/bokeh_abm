@@ -56,11 +56,13 @@ def auto_ownership():
 
     #make groupbed bar chart
     #plot_height = full_width/4
-    def makeGroupBar(src, groups):
+    def make_group_bar(src, groups):
+
+        TOOLS = "hover"
 
         p = figure(x_range=FactorRange(*groups),title="Figure 1 - Auto Ownership Distribution",
                    plot_width = column_width, plot_height = column_width/2,
-                   tools="hover",toolbar_location = None)
+                   tools=TOOLS,toolbar_location = None)
 
         p.vbar(x=dodge('Group',-0.25,range=p.x_range),top='Census', width=0.25, source=src,
                color=census_color, legend=value("Census"))
@@ -78,13 +80,13 @@ def auto_ownership():
         # ]
 
         # Styling
-        p = style(p)
+        p = map_style(p)
 
-        p.legend.click_policy="hide"
+        #p.legend.click_policy="hide"
 
         return p
 
-    def style(p):
+    def map_style(p):
 
         p.xgrid.visible = False
         p.ygrid.visible = False
@@ -121,7 +123,7 @@ def auto_ownership():
 
     #Auto Ownership Graph
     ao_src = make_src(ao_counts)
-    ao_graph = makeGroupBar(ao_src[0], ao_src[1])
+    ao_graph = make_group_bar(ao_src[0], ao_src[1])
     #
     # source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
     #             2006 - 2010 CTPP 5-Year Data Set</a> | Survey: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
