@@ -52,11 +52,11 @@ def auto_ownership():
                'Survey': survey,
                'Model': model}
 
-        return ColumnDataSource(data=data), groupby, data
+        return ColumnDataSource(data=data), groupby
 
     #make groupbed bar chart
     #plot_height = full_width/4
-    def makeGroupBar(src, groups, data):
+    def makeGroupBar(src, groups):
 
         p = figure(x_range=FactorRange(*groups),title="Figure 1 - Auto Ownership Distribution",
                    plot_width = column_width, plot_height = column_width/2,
@@ -71,11 +71,11 @@ def auto_ownership():
         p.vbar(x=dodge('Group',0.25,range=p.x_range),top='Model', width=0.25, source=src,
                color=cmap_color, legend=value("Model"))
 
-        p.select_one(HoverTool).tooltips = [
-             ('Census - Household Total',"@Census{0,}"),
-             ('Survey - Household Total',"@Survey{0,}"),
-             ('Model - Household Total',"@Model{0,}")
-        ]
+        # p.select_one(HoverTool).tooltips = [
+        #      ('Census - Household Total',"@Census{0,}"),
+        #      ('Survey - Household Total',"@Survey{0,}"),
+        #      ('Model - Household Total',"@Model{0,}")
+        # ]
 
         # Styling
         p = style(p)
@@ -121,7 +121,7 @@ def auto_ownership():
 
     #Auto Ownership Graph
     ao_src = make_src(ao_counts)
-    ao_graph = makeGroupBar(ao_src[0], ao_src[1], ao_src[2])
+    ao_graph = makeGroupBar(ao_src[0], ao_src[1])
     #
     # source = Div(text="""Sources - Census: <a href="http://data5.ctpp.transportation.org/ctpp/Browse/browsetables.aspx">
     #             2006 - 2010 CTPP 5-Year Data Set</a> | Survey: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
