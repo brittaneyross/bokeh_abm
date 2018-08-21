@@ -186,7 +186,7 @@ def auto_ownership():
               classes=["table-bordered", "table-hover","text-center","table-condensed","thead-dark"],
               float_format='{:20,.1f}%'.format), css_classes = ["caption"])
 
-    ao = [  column(row(Spacer(height = 1000),height = 1000),
+    ao = [  column(row(Spacer(height = 100),height = 100),
             row(column(Spacer(), css_classes = ["col-lg-3", "text-center"]),
             column(left_col, css_classes = ["col-lg-3", "text-center"]),
             #
