@@ -15,7 +15,7 @@ from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange
 from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText, Toggle, TableColumn, DataTable
 
 
-# ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
+ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
 #
 # survey_income = pd.read_csv(join(dirname(__file__),'data','income_survey.csv'))
 # survey_size = pd.read_csv(join(dirname(__file__),'data','size_survey.csv'))
