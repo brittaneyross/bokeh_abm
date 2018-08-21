@@ -197,6 +197,6 @@ def trip_purpose(trips,survey):
     l_1 = row(column(h_1,Spacer(height=25),
            row(purp_html,Spacer(width=50),purpshare_html,width=column_width),
            row(type_selection),
-           row(source,Div(text="<hr>",width=column_width))))
+           row(source,Div(text="<hr>",width=column_width),width = column_width, css_classes = ["caption", "text-center"])))
 
     return l_1
