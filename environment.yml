@@ -3,3 +3,4 @@ dependencies:
   - nbserverproxy
   - pandas
   - numpy
+  - holoviews
