@@ -15,6 +15,7 @@ from bokeh.models.widgets import Div, Tabs
 from scripts.Auto import auto_ownership
 from scripts.Mode import mode_choice
 from scripts.Purpose import trip_purpose
+from scripts.Transit import transit_calibration
 
 ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
 
@@ -32,6 +33,9 @@ model_workers = pd.read_csv(join(dirname(__file__),'data','workers_model.csv'))
 
 model_trips = pd.read_csv(join(dirname(__file__),'data','person_trips.csv'))
 survey_trips = pd.read_csv(join(dirname(__file__),'data','TravelSurvey_weekday_rsg.csv'))
+survey_hh = pd.read_csv(join(dirname(__file__),'data','TravelSurvey_Households_rsg.csv'))
+
+model_transit = pd.read_csv(join(dirname(__file__),'data','model_walktransit.csv'))
 
 
 #get tab contents
@@ -40,9 +44,11 @@ ao = auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
                     ctpp_income,ctpp_size,ctpp_workers,
                     model_income,model_size,model_workers)
 
-mc = mode_choice(model_trips,survey_trips)
+mc = mode_choice(model_trips,survey_trips,survey_hh)
 
 tp = trip_purpose(model_trips,survey_trips)
+
+tran_cal = transit_calibration(model_transit, survey_trips)
 
 def test_tab():
 
@@ -63,13 +69,13 @@ def test_tab():
 left_col = Div(text="""<h4>place holder</h4>""")
 right_col = Div(text="""<h4>figures</h4>""")
 
-l_2 = layout(children=[row(Spacer(height = 50)),
+calibration_content = layout(children=[row(Spacer(height = 50)),
                         row(column(left_col, width= 400,css_classes = ["caption", "text-center"]),
-                        column(ao,row(Spacer(height = 50)), mc, row(Spacer(height = 50)), tp),
+                        column(ao,row(Spacer(height = 50)), mc, row(Spacer(height = 50)), tp, row(Spacer(height = 50)), tran_cal),
                         column(right_col, width= 400, css_classes = ["caption", "text-center"]),
                         css_classes = ["container-fluid"], width = 2000)])
 
-tab2 =  Panel(child=l_2, title = '# Model Calibration')
+tab2 =  Panel(child=calibration_content, title = '# Model Calibration')
 
 # Create each of the tabs
 tab1 = test_tab()

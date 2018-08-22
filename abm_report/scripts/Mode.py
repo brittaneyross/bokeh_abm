@@ -10,7 +10,7 @@ from bokeh.layouts import layout, column, row
 from bokeh.models import Panel, Spacer, HoverTool, ColumnDataSource, FactorRange,NumeralTickFormatter
 from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText, Toggle, TableColumn, DataTable
 
-def mode_choice(trips_df, survey_df):
+def mode_choice(trips_df, survey_df, survey_hh):
 
     column_width = 2000
     column_width = 1000
@@ -200,11 +200,11 @@ def mode_choice(trips_df, survey_df):
     source = Div(text="""<small><center>*Observed Trips: <a href="http://www.cmap.illinois.gov/data/transportation/travel-survey">
                 2007-08 Travel Tracker Survey</a></center></small>""",width = column_width)
 
-    l_1 = row(column(h_4,Spacer(height=25),
+    mode_content = row(column(h_4,Spacer(height=25),
            row(purpose_selection,width=column_width),
            purp_title,purpBarChart,Spacer(height=25),
            row(type_selection,width=column_width),
            type_title,typeBarChart,source))
 
 
-    return l_1
+    return mode_content
