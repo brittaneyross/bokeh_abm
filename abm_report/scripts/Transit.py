@@ -51,8 +51,6 @@ from bokeh.palettes import Viridis, Spectral4
 
 import geopandas as gpd
 
-import networkx as nx
-
 output_notebook()
 #import holoviews as hv
 
