@@ -37,6 +37,11 @@ survey_hh = pd.read_csv(join(dirname(__file__),'data','TravelSurvey_Households_r
 
 model_transit = pd.read_csv(join(dirname(__file__),'data','model_walktransit.csv'))
 
+rings = join(dirname(__file__),'data','shapefiles','ring_sector_prj3.shp')
+rings_pts = pd.read_csv(join(dirname(__file__),'data','ring_latlon3.csv'))
+metra = join(dirname(__file__),'data','shapefiles','metra_rail_Project.shp')
+cta = join(dirname(__file__),'data','shapefiles','cta_rail_Project.shp')
+
 
 #get tab contents
 #auto ownership content
@@ -48,7 +53,7 @@ mc = mode_choice(model_trips,survey_trips,survey_hh)
 
 tp = trip_purpose(model_trips,survey_trips)
 
-tran_cal = transit_calibration(model_transit, survey_trips)
+tran_cal = transit_calibration(model_transit, survey_trips, rings, rings_pts, metra, cta)
 
 def test_tab():
 
