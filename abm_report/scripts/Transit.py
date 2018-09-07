@@ -50,11 +50,6 @@ from bokeh.io import show, output_file
 from bokeh.palettes import Viridis, Spectral4
 
 import geopandas as gpd
-
-<<<<<<< HEAD
-=======
-output_notebook()
->>>>>>> 9c72d2cc9b9013772640073eec798b4361f5a9b0
 #import holoviews as hv
 
 column_width = 1400
