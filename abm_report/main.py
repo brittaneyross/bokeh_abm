@@ -36,6 +36,7 @@ survey_trips = pd.read_csv(join(dirname(__file__),'data','TravelSurvey_weekday_r
 survey_hh = pd.read_csv(join(dirname(__file__),'data','TravelSurvey_Households_rsg.csv'))
 
 model_transit = pd.read_csv(join(dirname(__file__),'data','model_walktransit.csv'))
+survey_transit = pd.read_csv(join(dirname(__file__),'data','TravelSurvey_weekday_rsg_transit.csv'))
 
 rings = join(dirname(__file__),'data','shapefiles','ring_sector_prj3.shp')
 rings_pts = pd.read_csv(join(dirname(__file__),'data','ring_latlon3.csv'))
@@ -53,7 +54,7 @@ mc = mode_choice(model_trips,survey_trips,survey_hh)
 
 tp = trip_purpose(model_trips,survey_trips)
 
-tran_cal = transit_calibration(model_transit, survey_trips, rings, rings_pts, metra, cta)
+tran_cal = transit_calibration(model_transit, survey_transit, rings, rings_pts, metra, cta)
 
 def test_tab():
 
@@ -75,9 +76,9 @@ left_col = Div(text="""<h4>place holder</h4>""")
 right_col = Div(text="""<h4>figures</h4>""")
 
 calibration_content = layout(children=[row(Spacer(height = 50)),
-                        row(column(left_col, width= 400,css_classes = ["caption", "text-center"]),
+                        row(column(left_col, width= 200,css_classes = ["caption", "text-center"]),
                         column(ao,row(Spacer(height = 50)), mc, row(Spacer(height = 50)), tp, row(Spacer(height = 50)), tran_cal),
-                        column(right_col, width= 400, css_classes = ["caption", "text-center"]),
+                        column(right_col, width= 200, css_classes = ["caption", "text-center"]),
                         css_classes = ["container-fluid"], width = 2000)])
 
 tab2 =  Panel(child=calibration_content, title = '# Model Calibration')

@@ -13,7 +13,7 @@ from bokeh.models.widgets import Div, Tabs, Paragraph, Dropdown, Button, PreText
 def trip_purpose(trips_df,survey_df):
 
     column_width = 965
-    column_width = 1000
+    column_width = 1400
     bar_height = 500
     census_color = "#EFF1EF"
     survey_color = '#9EA499'

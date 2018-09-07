@@ -15,7 +15,7 @@ def auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
                     model_income,model_size,model_workers):
 
     full_width = 2000
-    column_width = 1000
+    column_width = 1400
     bar_height = 500
     census_color = "#EFF1EF"
     survey_color = '#9EA499'
