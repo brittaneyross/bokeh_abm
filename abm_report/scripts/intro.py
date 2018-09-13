@@ -179,7 +179,7 @@ def intro_tab(rings, rings_pts, metra, cta, counties, mhn):
                     xrange=(-9990000,-9619944), yrange=(5011119,5310000),plot_tools="pan,wheel_zoom,reset,save")
 
     poly_plot = make_poly_map(p, counties, 'COUNTY','poly_color',.5,None,2,False,"planning")
-    line_plot = make_line_map(p, mhn)
+    #line_plot = make_line_map(p, mhn)
     cmap_plot = make_poly_map(p, counties, 'COUNTY',None,.5,'white',2,True,None)
 
 
