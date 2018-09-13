@@ -16,6 +16,7 @@ from scripts.Auto import auto_ownership
 from scripts.Mode import mode_choice
 from scripts.Purpose import trip_purpose
 from scripts.Transit import transit_calibration
+from scripts.intro import intro_tab
 
 ao_counts = pd.read_csv(join(dirname(__file__),'data','aoCounts.csv'),index_col=[0])
 
@@ -42,10 +43,15 @@ rings = join(dirname(__file__),'data','shapefiles','ring_sector_prj3.shp')
 rings_pts = pd.read_csv(join(dirname(__file__),'data','ring_latlon3.csv'))
 metra = join(dirname(__file__),'data','shapefiles','metra_rail_Project.shp')
 cta = join(dirname(__file__),'data','shapefiles','cta_rail_Project.shp')
+counties = join(dirname(__file__),'data','shapefiles','modelingcounties.shp')
+mhn = join(dirname(__file__),'data','shapefiles','mhn_dissolve.shp')
 
 
 #get tab contents
 #auto ownership content
+
+intro = intro_tab(rings, rings_pts, metra, cta, counties, mhn)
+
 ao = auto_ownership(ao_counts,survey_income,survey_size,survey_workers,
                     ctpp_income,ctpp_size,ctpp_workers,
                     model_income,model_size,model_workers)
@@ -58,9 +64,16 @@ tran_cal = transit_calibration(model_transit, survey_transit, rings, rings_pts, 
 
 def test_tab():
 
+    left_col = Div(text="""<h4>place holder</h4>""")
+    right_col = Div(text="""<h4>figures</h4>""")
+
     h_1 = Div(text = """<h1><center>Intro Text</center></h1>""")
 
-    l_1 = layout(children=[h_1])
+    l_1 = layout(children=[row(Spacer(height = 50)),
+                            row(column(left_col, width= 200,css_classes = ["caption", "text-center"]),
+                            column(intro),
+                            column(right_col, width= 200, css_classes = ["caption", "text-center"]),
+                            css_classes = ["container-fluid"], width = 2000)])
 
     tab_1 = Panel(child=l_1, title = '# Introduction')
 
